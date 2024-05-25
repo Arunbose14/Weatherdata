@@ -1,0 +1,30 @@
+<div>
+  <h1>Current Weather</h1>
+  <input [(ngModel)]="location" placeholder="Enter location" />
+  <button (click)="getCurrentWeather()">Get Weather</button>
+  <div *ngIf="currentWeather">
+    <p>Temperature: {{ currentWeather.temperature }}°C</p>
+    <p>Description: {{ currentWeather.description }}</p>
+    <img [src]="'http://openweathermap.org/img/w/' + currentWeather.icon + '.png'" alt="Weather Icon">
+  </div>
+</div>
+<div>
+  <h1>Weather History</h1>
+  <input [(ngModel)]="from" placeholder="From (YYYY-MM-DD)" />
+  <input [(ngModel)]="to" placeholder="To (YYYY-MM-DD)" />
+  <button (click)="getWeatherHistory()">Get History</button>
+  <div *ngIf="weatherHistory">
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Temperature</th>
+        <th>Description</th>
+      </tr>
+      <tr *ngFor="let weather of weatherHistory">
+        <td>{{ weather.date }}</td>
+        <td>{{ weather.temperature }}°C</td>
+        <td>{{ weather.description }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
